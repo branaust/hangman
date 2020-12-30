@@ -71,22 +71,24 @@ class Hangman extends Component {
 
   /** render: render game */
   render() {
+    let playing = this.state.nWrong < this.props.maxWrong
+    let lost = this.state.nWrong === this.props.maxWrong
     return (
       <div className='Hangman'>
         <h1>Hangman</h1>
         <img src={this.props.images[this.state.nWrong]} alt={`You have gotten ${this.state.nWrong} wrong`} />
         <p className='Hangman-wrong'>Number Wrong: {this.state.nWrong}</p>
         <p className='Hangman-word'>
-          {this.state.nWrong < this.props.maxWrong ? this.guessedWord() : this.state.answer}
+          {playing ? this.guessedWord() : this.state.answer}
         </p>
         <p className='Hangman-btns'>
-          {this.state.nWrong < this.props.maxWrong && this.generateButtons()}
+          {playing && this.generateButtons()}
         </p>
         <h2>
-          {this.state.nWrong === this.props.maxWrong && 'LAHOOOOO SAHERRRRRR'}
+          {lost && 'LAHOOOOO SAHERRRRRR'}
         </h2>
-        {this.state.nWrong === this.props.maxWrong &&
-          <div>
+        {lost &&
+          <div className='Restart'>
             <button onClick={this.resetGame} >
               Restart
           </button>
