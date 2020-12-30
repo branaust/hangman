@@ -86,7 +86,7 @@ class Hangman extends Component {
           {this.state.nWrong === this.props.maxWrong && 'LAHOOOOO SAHERRRRRR'}
         </h2>
         {this.state.nWrong === this.props.maxWrong &&
-          <div className='Restart'>
+          <div>
             <button onClick={this.resetGame} >
               Restart
           </button>
